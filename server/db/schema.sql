@@ -1,1 +1,73 @@
-ⴭ钠迥躘駦₺럂匠灵扡獡⁥闦꺍뫥못ꇨ骄鳦ⴿ‭꿨ꢜ匠灵扡獡⁥軦뚈迥㸿匠䱑䔠楤潴⁲룤꞉ꇨꖻ룤궯迥ിⴊ‭⸱钬껨겜볯Ꞥ鯥ꚹꛩ㾼牣慥整琠扡敬椠⁦潮⁴硥獩獴挠汯敬瑣潩獮⠠਍†摩甠極⁤牰浩牡⁹敫⁹敤慦汵⁴敧彮慲摮浯畟極⡤Ⱙ਍†楴汴⁥整瑸渠瑯渠汵ⱬ਍†敤捳楲瑰潩⁮整瑸搠晥畡瑬✠Ⱗ਍†潳牵散损畯瑮椠瑮搠晥畡瑬〠ബ 挠汯敬瑣潩彮畮⁭整瑸ബ 椠潣⁮整瑸搠晥畡瑬✠畡潴獟潴楲獥Ⱗ਍†獩晟湩獩敨⁤潢汯慥⁮敤慦汵⁴慦獬ⱥ਍†慬瑳畟摰瑡摥琠硥ⱴ਍†牣慥整彤瑡琠浩獥慴灭穴搠晥畡瑬渠睯⤨਍㬩਍਍ⴭ㈠‮雦鶀飩ꆍ觧ඇ挊敲瑡⁥慴汢⁥晩渠瑯攠楸瑳⁳慧汬牥役慣摲⁳ന 椠⁤畵摩瀠楲慭祲欠祥搠晥畡瑬朠湥牟湡潤彭畵摩⤨ബ 挠瑡来牯⁹整瑸搠晥畡瑬✠鳦蚈뇧ⰿ਍†慣整潧祲损汯牯琠硥⁴敤慦汵⁴戧ⵧ敳潣摮牡⵹潣瑮楡敮⁲整瑸漭⵮敳潣摮牡⵹潣瑮楡敮❲ബ 搠瑡⁥整瑸ബ 琠瑩敬琠硥⁴潮⁴畮汬ബ 挠湯整瑮琠硥⁴敤慦汵⁴✧ബ 猠畯捲⁥整瑸搠晥畡瑬✠Ⱗ਍†捩湯琠硥⁴敤慦汵⁴栧獩潴祲敟畤Ⱗ਍†捡楴湯楟潣⁮整瑸搠晥畡瑬✠潢歯慭歲Ⱗ਍†浩条⁥整瑸ബ 挠敲瑡摥慟⁴楴敭瑳浡瑰⁺敤慦汵⁴潮⡷ഩ⤊഻ഊⴊ‭⸳ꂴ鷦袼藥钁곧낮鳦㾼牣慥整琠扡敬椠⁦潮⁴硥獩獴猠畯捲獥⠠਍†摩甠極⁤牰浩牡⁹敫⁹敤慦汵⁴敧彮慲摮浯畟極⡤Ⱙ਍†潮整潢歯楟⁤畵摩爠晥牥湥散⁳潣汬捥楴湯⡳摩 湯搠汥瑥⁥慣捳摡ⱥ਍†祴数琠硥⁴敤慦汵⁴螖믤➶ബ 琠瑩敬琠硥⁴潮⁴畮汬ബ 搠瑡⁥整瑸ബ 椠潣⁮整瑸搠晥畡瑬✠敤捳楲瑰潩❮ബ 甠汲琠硥ⱴ਍†牣慥整彤瑡琠浩獥慴灭穴搠晥畡瑬渠睯⤨਍㬩਍਍ⴭ㐠‮꿥鶯뛦꾁볯뎅臨钬껨겜볯挿敲瑡⁥慴汢⁥晩渠瑯攠楸瑳⁳敭獳条獥⠠਍†摩甠極⁤牰浩牡⁹敫⁹敤慦汵⁴敧彮慲摮浯畟極⡤Ⱙ਍†潮整潢歯楟⁤畵摩爠晥牥湥散⁳潣汬捥楴湯⡳摩 湯搠汥瑥⁥慣捳摡ⱥ਍†潲敬琠硥⁴档捥⁫爨汯⁥湩⠠甧敳❲‬愧❩⤩渠瑯渠汵ⱬ਍†潣瑮湥⁴整瑸渠瑯渠汵ⱬ਍†潭敤彬獵摥琠硥⁴敤慦汵⁴搧敥獰敥⵫档瑡Ⱗ਍†楴敭琠硥ⱴ਍†牣慥整彤瑡琠浩獥慴灭穴搠晥畡瑬渠睯⤨਍㬩਍਍ⴭ㔠‮鯥骮듦龯볯낿ꋥ馕ꛩ覼਍牣慥整琠扡敬椠⁦潮⁴硥獩獴愠瑲晩捡獴⠠਍†摩甠極⁤牰浩牡⁹敫⁹敤慦汵⁴敧彮慲摮浯畟極⡤Ⱙ਍†祴数琠硥⁴敤慦汵⁴䄧⁉듦龯Ⱗ਍†楴汴⁥整瑸渠瑯渠汵ⱬ਍†潣瑮湥⁴整瑸搠晥畡瑬✠Ⱗ਍†慴獧琠硥孴⁝敤慦汵⁴笧❽ബ 挠汯牯琠硥⁴敤慦汵⁴戧牯敤⵲牰浩牡⽹〴Ⱗ਍†牣慥整彤瑡琠浩獥慴灭穴搠晥畡瑬渠睯⤨਍㬩਍਍ⴭ꾐铧財뫧覮藥袼迥覀볯릠跦ꢂ髧肜뇦超뷧隭闧覼਍ⴭ愠瑬牥琠扡敬挠汯敬瑣潩獮攠慮汢⁥潲⁷敬敶⁬敳畣楲祴഻ⴊ‭污整⁲慴汢⁥慧汬牥役慣摲⁳湥扡敬爠睯氠癥汥猠捥牵瑩㭹਍ⴭ愠瑬牥琠扡敬猠畯捲獥攠慮汢⁥潲⁷敬敶⁬敳畣楲祴഻ⴊ‭污整⁲慴汢⁥敭獳条獥攠慮汢⁥潲⁷敬敶⁬敳畣楲祴഻ⴊ‭污整⁲慴汢⁥牡楴慦瑣⁳湥扡敬爠睯氠癥汥猠捥牵瑩㭹਍
+-- 研史明智 (Scholarly Archivist) - Database Schema
+-- Supabase PostgreSQL
+
+-- 1. 笔记本 (Collections)
+create table if not exists collections (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  description text default '',
+  source_count int default 0,
+  collection_num text,
+  icon text default 'auto_stories',
+  is_finished boolean default false,
+  last_updated text,
+  created_at timestamp with time zone default now()
+);
+
+-- 2. 文思阁卡片 (Gallery Cards)
+create table if not exists gallery_cards (
+  id uuid primary key default gen_random_uuid(),
+  category text default '历史百科',
+  category_color text default 'bg-secondary-container text-on-secondary-container',
+  date text,
+  title text not null,
+  content text default '',
+  source text default '',
+  icon text default 'history_edu',
+  action_icon text default 'bookmark',
+  image text,
+  created_at timestamp with time zone default now()
+);
+
+-- 3. 研究素材 (Sources)
+create table if not exists sources (
+  id uuid primary key default gen_random_uuid(),
+  notebook_id uuid references collections(id) on delete cascade,
+  type text default '文本',
+  title text not null,
+  date text,
+  icon text default 'description',
+  url text,
+  content_text text,
+  summary text,
+  created_at timestamp with time zone default now()
+);
+
+-- 4. 对话消息 (Messages)
+create table if not exists messages (
+  id uuid primary key default gen_random_uuid(),
+  notebook_id uuid references collections(id) on delete cascade,
+  role text check (role in ('user', 'ai')) not null,
+  content text not null,
+  model_used text default 'deepseek-chat',
+  time text,
+  created_at timestamp with time zone default now()
+);
+
+-- 5. 智识制品 (Artifacts)
+create table if not exists artifacts (
+  id uuid primary key default gen_random_uuid(),
+  type text default 'AI 洞察',
+  title text not null,
+  content text default '',
+  tags text[] default '{}',
+  color text default 'border-primary/40',
+  created_at timestamp with time zone default now()
+);
+
+-- Row Level Security (RLS) Configuration
+alter table collections enable row level security;
+alter table gallery_cards enable row level security;
+alter table sources enable row level security;
+alter table messages enable row level security;
+alter table artifacts enable row level security;

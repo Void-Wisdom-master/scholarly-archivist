@@ -1,0 +1,2 @@
+\corruption_log.txt (Replacement chars)
+\lint_results.txt (Replacement chars)

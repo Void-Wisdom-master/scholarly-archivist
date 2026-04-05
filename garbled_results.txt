@@ -1,0 +1,6 @@
+\corruption_log.txt (Replacement chars)
+\lint_results.txt (Replacement chars)
+\server\db\supabase.js (Replacement chars)
+\server\routes\notebooks.js (Replacement chars)
+\server\routes\sources.js (Replacement chars)
+\src\api.ts (Replacement chars)

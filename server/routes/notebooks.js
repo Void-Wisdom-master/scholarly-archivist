@@ -18,7 +18,7 @@ router.get('/', async (ctx) => {
 router.get('/:id', async (ctx) => {
   try {
     const notebook = await notebookService.getById(ctx.params.id);
-    if (!notebook) { ctx.status = 404; ctx.body = { success: false, message: '未找' }; return; }
+    if (!notebook) { ctx.status = 404; ctx.body = { success: false, message: '未找到笔记本' }; return; }
     ctx.body = { success: true, data: notebook };
   } catch (err) {
     ctx.status = 500;
@@ -51,7 +51,7 @@ router.put('/:id', async (ctx) => {
   }
 });
 
-// PUT /api/notebooks/:id/finish  (切换完结状�?
+// PUT /api/notebooks/:id/finish  (切换完结状态)
 router.put('/:id/finish', async (ctx) => {
   try {
     const notebook = await notebookService.toggleFinish(ctx.params.id);

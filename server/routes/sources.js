@@ -9,7 +9,7 @@ const upload = multer();
 router.get('/', async (ctx) => {
   try {
     const { notebookId } = ctx.query;
-    if (!notebookId) { ctx.status = 400; ctx.body = { success: false, message: '需要提�?notebookId' }; return; }
+    if (!notebookId) { ctx.status = 400; ctx.body = { success: false, message: '需要提供 notebookId' }; return; }
     const sources = await sourceService.getByNotebook(notebookId);
     ctx.body = { success: true, data: sources };
   } catch (err) {
@@ -25,7 +25,7 @@ router.post('/', upload.single('file'), async (ctx) => {
     const file = ctx.file;
     if (!notebookId || !title) { 
       ctx.status = 400; 
-      ctx.body = { success: false, message: '需�?notebookId �?title' }; 
+      ctx.body = { success: false, message: '需要 notebookId 和 title' }; 
       return; 
     }
     const source = await sourceService.create({ 

@@ -12,7 +12,7 @@ export const galleryModel = {
   },
 
   async create({ category, categoryColor, date, title, content, source, icon, actionIcon, image }) {
-    if (!supabase) throw new Error('Supabase 未配');
+    if (!supabase) throw new Error('Supabase 未配置');
     const { data, error } = await supabase
       .from('gallery_cards')
       .insert([{ category, category_color: categoryColor, date, title, content, source, icon, action_icon: actionIcon, image }])
@@ -23,7 +23,7 @@ export const galleryModel = {
   },
 
   async delete(id) {
-    if (!supabase) throw new Error('Supabase 未配');
+    if (!supabase) throw new Error('Supabase 未配置');
     const { error } = await supabase.from('gallery_cards').delete().eq('id', id);
     if (error) throw error;
     return true;

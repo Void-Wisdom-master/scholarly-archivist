@@ -1,5 +1,7 @@
 /**
- * 前端 API 工具' * 统一封装所有后端请求，前端组件通过此模块与后端通信' */
+ * 前端 API 工具
+ * 统一封装所有后端请求，前端组件通过此模块与后端通信
+ */
 
 const BASE = '/api';
 
@@ -35,7 +37,7 @@ async function request<T>(
 
   const text = await res.text();
   if (!text) {
-    if (!res.ok) throw new Error(`服务器响应异�?(Status: ${res.status})`);
+    if (!res.ok) throw new Error(`服务器响应异常 (Status: ${res.status})`);
     return {} as T;
   }
 
@@ -157,7 +159,7 @@ export const messageApi = {
     request<void>('DELETE', `/messages?notebookId=${notebookId}`),
 };
 
-// ─── 历史探索与笔�?(中式留白主题) ────────────────────────────────────────────────────────
+// ─── 历史探索与笔记 (中式留白主题) ────────────────────────────────────────────────────────
 export interface HistoryNote {
   id: string;
   title: string;
@@ -219,7 +221,7 @@ export const chatApi = {
 
     const res = await fetch(`${BASE}/chat/sendStream`, options);
     if (!res.ok) throw new Error('流式请求失败');
-    if (!res.body) throw new Error('环境不支持流式响');
+    if (!res.body) throw new Error('环境不支持流式响应');
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder('utf-8');
