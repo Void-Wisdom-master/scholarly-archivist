@@ -26,7 +26,7 @@ export const sourceModel = {
     return toCamel(data);
   },
 
-  async create({ notebookId, type, title, date, icon, url, contentText, summary }) {
+  async create({ notebookId, type, title, date, icon, url, contentText }) {
     if (!supabase) throw new Error('Supabase 未配置');
     const { data, error } = await supabase
       .from('sources')
@@ -37,8 +37,7 @@ export const sourceModel = {
         date, 
         icon, 
         url,
-        content_text: contentText,
-        summary
+        content_text: contentText
       }])
       .select()
       .single();

@@ -22,7 +22,6 @@ export const sourceService = {
   async create({ notebookId, type, title, icon, file }) {
     let url = '';
     let contentText = '';
-    let summary = '';
     
     // 1. 上传物理文件到 Supabase Storage
     if (file && supabase) {
@@ -64,24 +63,8 @@ export const sourceService = {
         contentText = '文本提取失败';
       }
 
-      // 3. AI 预处理生成提要
-      if (contentText && contentText.length > 50 && qwenClient) {
-        try {
-          const response = await qwenClient.chat.completions.create({
-            model: 'qwen-long',
-            messages: [
-              { role: 'system', content: '你是一位博雅的研究员，擅长将复杂的学术资料提取为简明扼要的『档案提要』。请将以下文本缩写成 200 字以内的摘要，保留核心论点与关键细节。直接输出摘要内容' },
-              { role: 'user', content: contentText.substring(0, 10000) } // 限制输入长度
-            ],
-            temperature: 0.3,
-            max_tokens: 300,
-          });
-          summary = response.choices[0].message.content.trim();
-        } catch (aiErr) {
-          console.error('[AI Summary Error]', aiErr);
-          summary = ''; // 留空触发 UI "正在研读..."
-        }
-      }
+      // 3. AI 预处理生成提要已被禁用
+      // if (contentText && contentText.length > 50 && qwenClient) { ... }
     }
 
     const date = new Date().toLocaleDateString('zh-CN');
@@ -92,8 +75,7 @@ export const sourceService = {
       date, 
       icon, 
       url,
-      contentText,
-      summary
+      contentText
     });
     
     // 更新笔记本素材数

@@ -107,7 +107,9 @@ async function* callDeepSeekReasonerStream(systemPrompt, userMessage) {
     stream: true,
   });
   for await (const chunk of stream) {
-    yield chunk.choices[0]?.delta?.content || chunk.choices[0]?.delta?.reasoning_content || '';
+    // 关键修正：DeepSeek Reasoner (R1) 开启 streaming 后会先吐出 reasoning_content，再吐出 content。
+    // 为确保作为制品（思维导图/卡片）的输出不包含思考过程及其干扰，我们仅推送最终 content。
+    yield chunk.choices[0]?.delta?.content || '';
   }
 }
 
@@ -261,13 +263,20 @@ export async function routeStream({ message, notebookId, notebookTitle, sourceTi
   } else if (intent === 'mind_map') {
     modelUsed = 'deepseek-reasoner';
     const systemPrompt = `你是一位精通结构化思维的学术教练。请根据用户提供的素材和笔记本标题《${notebookTitle}》，生成一份逻辑严密的思维导图。
-请使用 Mermaid 语法（graph TD 或 mindmap）来表示结构。
-直接输出 Mermaid 代码块，例如：
+请严格遵守以下规则：
+1. 必须使用 Mermaid 语法 (使用 graph TD 或 mindmap 结构)。
+2. 输出的内容必须直接包含在 \`\`\`mermaid 代码块中。
+3. 不要输出任何代码块以外的解释性文字或思考过程。
+4. 确保节点标签中如果包含特殊字符（如括?），请用引号包裹，例如：A["(子节点)"]。
+5. 你可以使用适当的 Emoji 来增强视觉效果。
+
+输出示例：
 \`\`\`mermaid
 graph TD
-  A[标题] --> B[子节点]
+  A[核心主题] --> B[分支1]
+  A --> C[分支2]
 \`\`\`
-你可以适当使用 Emoji 增强视觉效果。不要输出多余的解释。`;
+`;
     const userMsg = `请根据笔记本《${notebookTitle}》 ${sourceContext}生成思维导图。用户消息：${message}`;
     streamGenerator = callMindMapStream(systemPrompt, userMsg);
 

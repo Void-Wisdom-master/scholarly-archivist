@@ -56,12 +56,12 @@ const MermaidDiagram = ({ content }: { content: string }) => {
     }
 
     // 防御性校验：检查关键字和闭合符
-    const isRenderable = /(graph|flowchart|mindmap|classDiagram|stateDiagram|pie|sequenceDiagram|gantt)/.test(code)
-                        && (code.includes('\n') || code.length > 20); // 确保有一定的结构
+    const isRenderable = /(graph|flowchart|mindmap|classDiagram|stateDiagram|pie|sequenceDiagram|gantt|timeline)/.test(code)
+                        && (code.includes('\n') || code.length > 10); // 确保有一定结构
 
     if (!isRenderable) {
       if (!containerRef.current.innerHTML) {
-        containerRef.current.innerHTML = '<div class="text-[10px] italic text-primary/40 animate-pulse text-center py-8">正在构思导图结...</div>';
+        containerRef.current.innerHTML = '<div class="text-[10px] italic text-primary/40 animate-pulse text-center py-8">正在构思导图结构...</div>';
       }
       return;
     }
@@ -169,13 +169,14 @@ const ArtifactPreview = ({ artifact }: { artifact: Artifact }) => {
 
   // 2. Mind Map Rendering
   if (artifact.type === 'mind_map') {
-    // 鲁棒型核心Mermaid剥离：寻找第一个关键字到最后一个闭合符
+    // 鲁棒型核心 Mermaid 剥离：寻找 ```mermaid 块，支持流式
     let code = artifact.content.trim();
-    const mermaidRegex = /```mermaid([\s\S]*?)```|((?:graph|flowchart|mindmap|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|timeline)[\s\S]*)/i;
+    const mermaidRegex = /```mermaid([\s\S]*?)(?:```|$)|((?:graph|flowchart|mindmap|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|timeline)[\s\S]*)/i;
     const match = code.match(mermaidRegex);
     
     if (match) {
-      code = (match[1] || match[2]).trim();
+      // 优先从代码块提取，如果代码块没闭合（流式中间态），则匹配 match[1]
+      code = (match[1] || match[2] || '').trim();
     }
     
     return (
