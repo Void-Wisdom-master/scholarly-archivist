@@ -45,9 +45,10 @@ const LibraryView: React.FC<LibraryViewProps> = React.memo(({
       initial="hidden"
       animate="visible"
       exit={{ opacity: 0, filter: 'blur(10px)', transition: { duration: 0.8 } }}
-      className="max-w-7xl mx-auto px-8 py-16"
+      className="h-full overflow-y-auto custom-scrollbar"
     >
-      <AnimatePresence>
+      <div className="max-w-7xl mx-auto px-8 py-16">
+        <AnimatePresence>
         {!isZenMode && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -187,8 +188,8 @@ const LibraryView: React.FC<LibraryViewProps> = React.memo(({
           </motion.button>
         )}
       </motion.div>
-
-    </motion.div>
+    </div>
+  </motion.div>
   );
 });
 

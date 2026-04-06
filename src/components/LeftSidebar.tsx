@@ -56,7 +56,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = React.memo(({
               exit={{ opacity: 0, x: -10 }}
               className="font-headline text-xl italic tracking-tight text-primary whitespace-nowrap overflow-hidden"
             >
-              智史寻道
+              研史明智
             </motion.h1>
           )}
         </AnimatePresence>
@@ -135,8 +135,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = React.memo(({
         {/* Integrated Footer in Sidebar */}
         {(isFixed || isExpanded) && (
           <div className="pt-4 pb-2 px-2 opacity-30 text-[8px] font-label uppercase tracking-[0.15em] leading-relaxed select-none">
-            <div className="italic mb-1">研史明智 学术引擎 v4.5</div>
-            <div>© 2024 SCHOLARLY ARCHIVIST</div>
+            <div className="italic mb-1">问道无涯</div>
           </div>
         )}
       </div>

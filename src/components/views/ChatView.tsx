@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
-import { 
-  messageApi, 
-  sourceApi, 
-  chatApi, 
-  galleryApi, 
-  type User 
+import {
+  messageApi,
+  sourceApi,
+  chatApi,
+  galleryApi,
+  type User
 } from '../../api';
 import mermaid from 'mermaid';
 
@@ -26,11 +26,11 @@ mermaid.initialize({
   },
   securityLevel: 'loose',
 });
-import { 
-  Collection, 
-  ArchiveCard, 
-  Source, 
-  Message, 
+import {
+  Collection,
+  ArchiveCard,
+  Source,
+  Message,
   Artifact,
   ReviewCard
 } from '../../types';
@@ -57,7 +57,7 @@ const MermaidDiagram = ({ content }: { content: string }) => {
 
     // 防御性校验：检查关键字和闭合符
     const isRenderable = /(graph|flowchart|mindmap|classDiagram|stateDiagram|pie|sequenceDiagram|gantt|timeline)/.test(code)
-                        && (code.includes('\n') || code.length > 10); // 确保有一定结构
+      && (code.includes('\n') || code.length > 10); // 确保有一定结构
 
     if (!isRenderable) {
       if (!containerRef.current.innerHTML) {
@@ -67,7 +67,7 @@ const MermaidDiagram = ({ content }: { content: string }) => {
     }
 
     const renderId = `mermaid-svg-${Date.now()}`;
-    
+
     // --- 引入防抖处理：由于流式更新非常快，缩短防抖以提升反馈 ---
     const timeoutId = setTimeout(async () => {
       try {
@@ -101,14 +101,14 @@ const MermaidDiagram = ({ content }: { content: string }) => {
           <span className="material-symbols-outlined text-xs">restart_alt</span>
         </button>
       </div>
-      <div 
+      <div
         className="mermaid-viewer overflow-auto flex justify-center py-8 custom-scrollbar bg-white/40"
         style={{ maxHeight: '500px' }}
       >
-        <div 
-          ref={containerRef} 
-          style={{ 
-            transform: `scale(${zoom})`, 
+        <div
+          ref={containerRef}
+          style={{
+            transform: `scale(${zoom})`,
             transformOrigin: 'top center',
             transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             cursor: zoom > 1 ? 'grab' : 'default'
@@ -121,7 +121,7 @@ const MermaidDiagram = ({ content }: { content: string }) => {
 
 // --- Sub-component: FlashCard (Premium View) ---
 const FlashCard = ({ card, index }: { card: ReviewCard; index: number }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, x: -5 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay: index * 0.1 }}
@@ -133,7 +133,7 @@ const FlashCard = ({ card, index }: { card: ReviewCard; index: number }) => (
       </div>
       <div className="h-[1px] flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
     </div>
-    
+
     <div className="space-y-4">
       <div className="font-headline text-sm font-bold text-on-surface leading-snug tracking-tight">
         {card.front}
@@ -173,12 +173,12 @@ const ArtifactPreview = ({ artifact }: { artifact: Artifact }) => {
     let code = artifact.content.trim();
     const mermaidRegex = /```mermaid([\s\S]*?)(?:```|$)|((?:graph|flowchart|mindmap|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|timeline)[\s\S]*)/i;
     const match = code.match(mermaidRegex);
-    
+
     if (match) {
       // 优先从代码块提取，如果代码块没闭合（流式中间态），则匹配 match[1]
       code = (match[1] || match[2] || '').trim();
     }
-    
+
     return (
       <div className="relative group/mind-map">
         <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center opacity-0 group-hover/mind-map:opacity-100 transition-opacity">
@@ -198,11 +198,11 @@ const ArtifactPreview = ({ artifact }: { artifact: Artifact }) => {
       let jsonContent = artifact.content.trim();
       const jsonRegex = /```json([\s\S]*?)```|(\{[\s\S]*\}|\[[\s\S]*\])/;
       const match = jsonContent.match(jsonRegex);
-      
+
       if (match) {
         jsonContent = (match[1] || match[2]).trim();
       }
-      
+
       const data = JSON.parse(jsonContent) as { cards: ReviewCard[] };
       return (
         <div className="space-y-4 max-h-[550px] overflow-y-auto pr-3 custom-scrollbar py-2">
@@ -217,7 +217,7 @@ const ArtifactPreview = ({ artifact }: { artifact: Artifact }) => {
       if (artifact.content.length < 100) {
         return (
           <div className="flex flex-col items-center justify-center py-12 space-y-4 opacity-40">
-             <div className="text-[10px] font-label uppercase tracking-widest animate-pulse">正在精炼知识..</div>
+            <div className="text-[10px] font-label uppercase tracking-widest animate-pulse">正在精炼知识..</div>
           </div>
         );
       }
@@ -249,7 +249,7 @@ const ChatMessage = React.memo(({ msg, onPin }: { msg: Message; onPin: (m: Messa
             <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
               <span className="material-symbols-outlined text-[14px] text-white">auto_awesome</span>
             </div>
-            <span className="font-label text-[10px] text-primary uppercase tracking-[0.15em] font-bold">神谕 AI</span>
+            <span className="font-label text-[10px] text-primary uppercase tracking-[0.15em] font-bold">馆藏员</span>
           </div>
         )}
         <div className={`p-6 rounded-[var(--radius-apple-2xl)] text-sm leading-relaxed shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-outline-variant/10 ${msg.role === 'user' ? 'bg-surface-container-low text-on-surface' : 'bg-surface-container-lowest text-on-surface'
@@ -314,6 +314,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isExtracting, setIsExtracting] = useState(false);
+  const [uploadingFiles, setUploadingFiles] = useState<{id: string; name: string; type: string; icon: string}[]>([]);
   const [currentArtifact, setCurrentArtifact] = useState<Artifact | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -350,15 +351,12 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
           sourceApi.getByNotebook(activeNotebook.id)
         ]);
 
-        if (history.length > 0 || notebookSources.length > 0) {
-          setMessages(history);
-          setSources(notebookSources as unknown as Source[]);
-        } else if (isMockNotebook) {
+        setMessages(history);
+        setSources(notebookSources as unknown as Source[]);
+
+        if (history.length === 0 && notebookSources.length === 0 && isMockNotebook) {
           setMessages(MOCK_DATA.initialChat);
           setSources(MOCK_DATA.sources);
-        } else {
-          setMessages([]);
-          setSources([]);
         }
       } catch (err) {
         console.warn('Failed to sync with backend, falling back to empty/mock:', err);
@@ -392,11 +390,13 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
   const handleImport = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
+    // Reset input so the same file can be re-uploaded later
+    e.target.value = '';
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const extension = file.name.split('.').pop()?.toLowerCase();
-      
+
       let type = '文件';
       let icon = 'description';
 
@@ -414,6 +414,11 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
         icon = 'image';
       }
 
+      // 立即添加 loading 占位符，给用户即时反馈
+      const tempId = `uploading-${Date.now()}-${i}`;
+      const placeholder = { id: tempId, name: file.name, type, icon };
+      setUploadingFiles(prev => [...prev, placeholder]);
+
       if (user?.id === 'guest') {
         const newSrc: Source = {
           id: crypto.randomUUID(),
@@ -423,6 +428,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
           icon
         };
         setSources(prev => [newSrc, ...prev]);
+        setUploadingFiles(prev => prev.filter(f => f.id !== tempId));
         continue;
       }
 
@@ -435,15 +441,23 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
         formData.append('icon', icon);
 
         const newSource = await sourceApi.create(formData);
+        // 上传成功：移除占位符，添加真实素材
         setSources(prev => [newSource as unknown as Source, ...prev]);
         setSelectedSources(prev => [...prev, newSource.id]);
+        setIsExtracting(false);
+        setUploadingFiles(prev => prev.filter(f => f.id !== tempId));
+        
+        // 成功响应后，立即刷新素材列表并确保显示
+        const updated = await sourceApi.getByNotebook(activeNotebook.id);
+        setSources(updated);
+        console.log(`[Source] Upload success, new count: ${updated.length}`);
       } catch (err) {
         console.error('Failed to save source to backend:', err);
+        // 上传失败：移除占位符，在 console 记录错误
+        setUploadingFiles(prev => prev.filter(f => f.id !== tempId));
+        // 可选：提示用户上传失败
+        alert(`文件"${file.name}"上传失败，请检查后端服务并重试`);
       }
-    }
-    
-    if (user?.id === 'guest') {
-      alert('已导入本地素材');
     }
   };
 
@@ -468,25 +482,30 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
   };
 
   const handleSend = async (overrideMode?: 'auto' | 'review_card' | 'mind_map') => {
-    if (!input.trim() && overrideMode !== 'review_card' && overrideMode !== 'mind_map') return;
+    if (!input.trim() && !overrideMode) return;
+    if (overrideMode && !input.trim()) {
+      // 如果没有输入但有模式，设置默认消息
+      if (overrideMode === 'review_card') setInput('生成详细的知识闪卡');
+      if (overrideMode === 'mind_map') setInput('生成当前素材的思维导图');
+    }
 
     // --- 1. 声明处理逻辑 (位于顶部避免 hoisted 引用错误) ---
-    
+
     // 普通对话逻辑
     const proceedDialogue = async (prompt: string, ctrl: AbortController) => {
       const userMsgId = Date.now().toString();
       const aiMsgId = (Date.now() + 1).toString();
       let currentContent = '';
 
-      const userMsg: Message = { 
-        id: userMsgId, role: 'user', content: prompt, 
-        time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) 
+      const userMsg: Message = {
+        id: userMsgId, role: 'user', content: prompt,
+        time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
       };
-      const aiMsg: Message = { 
-        id: aiMsgId, role: 'ai', content: '', 
-        time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) 
+      const aiMsg: Message = {
+        id: aiMsgId, role: 'ai', content: '',
+        time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
       };
-      
+
       // 原子操作：同步更新用户和 AI 占位
       setMessages(prev => [...prev, userMsg, aiMsg]);
       setIsTyping(false);
@@ -506,7 +525,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
           const delta = chunk.delta || '';
           if (delta) {
             currentContent += delta;
-            setMessages(prev => 
+            setMessages(prev =>
               prev.map(m => m.id === aiMsgId ? { ...m, content: currentContent } : m)
             );
           }
@@ -514,7 +533,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
       } catch (err) {
         if ((err as Error).name !== 'AbortError') {
           console.error('[Stream] Dialogue failed:', err);
-          setMessages(prev => prev.map(m => 
+          setMessages(prev => prev.map(m =>
             m.id === aiMsgId ? { ...m, content: currentContent + '\n\n> [!CAUTION]\n> 对话发生异常，请检查网络或稍后重试' } : m
           ));
         }
@@ -566,18 +585,18 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
     };
 
     // --- 2. 意图解析与分发 ---
-    
+
     const lowerInput = input.toLowerCase();
     const isIntentArtifact = !overrideMode && (
-      (lowerInput.includes('思维导图') || lowerInput.includes('脑图') || lowerInput.includes('图谱') || 
-       lowerInput.includes('流程') || lowerInput.includes('架构') || lowerInput.includes('拓扑') ||
-       lowerInput.includes('闪卡') || lowerInput.includes('卡片') || lowerInput.includes('复习'))
+      (lowerInput.includes('思维导图') || lowerInput.includes('脑图') || lowerInput.includes('图谱') ||
+        lowerInput.includes('流程') || lowerInput.includes('架构') || lowerInput.includes('拓扑') ||
+        lowerInput.includes('闪卡') || lowerInput.includes('卡片') || lowerInput.includes('复习'))
       || (lowerInput.includes('思维导图') || lowerInput.includes('脑图') || lowerInput.includes('知识闪卡'))
     );
-    
-    const effectiveMode = overrideMode || (isIntentArtifact ? (lowerInput.includes('闪卡') || lowerInput.includes('卡片') ? 'review_card' : 'mind_map') : 'auto');
+
+    const effectiveMode = overrideMode || (isIntentArtifact ? (lowerInput.includes('闪卡') || lowerInput.includes('卡片') || lowerInput.includes('flashcard') ? 'review_card' : 'mind_map') : 'auto');
     const isArtifactGen = effectiveMode !== 'auto';
-    const msgContent = input.trim() || (effectiveMode === 'review_card' ? '生成复习卡片' : '生成思维导图');
+    const msgContent = input.trim() || (effectiveMode === 'review_card' ? '生成复习闪卡' : '生成思维导图');
 
     // 清空状态
     setInput('');
@@ -596,7 +615,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
   const handleArchiveArtifact = (art: Artifact) => {
     // 检查是否已经在 Studio 中存在（通过 IDTitle+Content 简易判定）
     const isAlreadyPinned = pinnedArtifacts.some(p => p.id === art.id || (p.title === art.title && p.content === art.content));
-    
+
     if (isAlreadyPinned) {
       alert('该制品已保存在翰墨留香侧边栏');
       return;
@@ -608,7 +627,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
     };
 
     setPinnedArtifacts([pinnedArt, ...pinnedArtifacts]);
-    
+
     // 同时同步到文思阁 (Gallery)
     const newCard: ArchiveCard = {
       id: 'g' + Date.now().toString(),
@@ -634,7 +653,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
     const prevUserMsg = messages.slice(0, msgIndex).reverse().find(m => m.role === 'user');
     const userQuestion = prevUserMsg ? prevUserMsg.content : "";
 
-    const formattedContent = userQuestion 
+    const formattedContent = userQuestion
       ? `问：${userQuestion}\n\n答：${msg.content}`
       : msg.content;
 
@@ -687,9 +706,17 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
               />
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="bg-primary text-on-primary px-4 py-2 rounded-[var(--radius-apple-xl)] font-label text-[10px] tracking-widest flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-lg shadow-primary/10"
+                disabled={uploadingFiles.length > 0}
+                className="bg-primary text-on-primary px-4 py-2 rounded-[var(--radius-apple-xl)] font-label text-[10px] tracking-widest flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-lg shadow-primary/10 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <span className="material-symbols-outlined text-sm">add</span> 导入
+                {uploadingFiles.length > 0 ? (
+                  <>
+                    <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    上传中
+                  </>
+                ) : (
+                  <><span className="material-symbols-outlined text-sm">add</span> 导入</>
+                )}
               </button>
             </div>
             <div className="relative">
@@ -699,8 +726,35 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
           </div>
           <div className="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-3">
             <div className="px-2 mb-2">
-              <span className="font-label text-[10px] uppercase tracking-widest text-outline">当前档案档案({sources.length})</span>
+              <span className="font-label text-[10px] uppercase tracking-widest text-outline">
+                当前档案 ({sources.length + uploadingFiles.length})
+                {uploadingFiles.length > 0 && (
+                  <span className="ml-1 text-primary animate-pulse">· {uploadingFiles.length}个上传中</span>
+                )}
+              </span>
             </div>
+
+            {/* 上传中的占位骨架 */}
+            {uploadingFiles.map((f) => (
+              <div
+                key={f.id}
+                className="p-4 rounded-[var(--radius-apple-2xl)] border border-primary/30 bg-primary/5 animate-pulse"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded bg-primary/10 flex items-center justify-center">
+                    <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                  </div>
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div className="text-sm font-body font-bold truncate text-primary/70">{f.name}</div>
+                    <div className="text-[10px] text-primary/50 italic">正在解析 {f.type} 文件...</div>
+                    <div className="h-1.5 bg-primary/20 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary/40 rounded-full animate-[pulse_1.5s_ease-in-out_infinite] w-3/4" />
+                    </div>
+                  </div>
+                  <span className="material-symbols-outlined text-primary/50 text-sm">{f.icon}</span>
+                </div>
+              </div>
+            ))}
             {sources.map((source) => (
               <div
                 key={source.id}
@@ -717,7 +771,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
                     <h4 className={`text-sm font-body font-bold truncate mb-1 ${selectedSources.includes(source.id) ? 'text-on-surface' : 'text-on-surface-variant'}`}>{source.title}</h4>
                     {source.type !== 'IMAGE' && (
                       <p className="text-[10px] text-on-surface-variant/70 line-clamp-1 mb-1 italic">
-                        {source.summary || '正在研读...'}
+                        {source.type} 研究素材
                       </p>
                     )}
                     <div className="flex items-center justify-between">
@@ -952,8 +1006,8 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
 
             <div className="space-y-3">
               {pinnedArtifacts.map((art) => (
-                <div 
-                  key={art.id} 
+                <div
+                  key={art.id}
                   className={`bg-surface-container-lowest p-6 rounded-[var(--radius-apple-2xl)] shadow-sm border border-outline-variant/10 border-l-4 ${art.color} relative group cursor-pointer hover:shadow-xl hover:border-primary/20 transition-all`}
                   onClick={() => setCurrentArtifact(art)}
                 >
@@ -968,7 +1022,7 @@ const ChatView: React.FC<ChatViewProps> = React.memo(({
                   </button>
                   <span className="font-label text-[9px] tracking-widest text-primary font-bold uppercase block mb-2">{art.type}</span>
                   <h4 className="text-xs font-body font-bold mb-1">{art.title || (art.type === 'mind_map' ? '思维导图' : '知识闪卡')}</h4>
-                  <p 
+                  <p
                     className="text-[11px] font-body text-on-surface mb-3 whitespace-pre-wrap line-clamp-6"
                     style={{ whiteSpace: 'pre-wrap' }}
                   >

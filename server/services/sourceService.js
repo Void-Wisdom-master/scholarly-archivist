@@ -1,9 +1,7 @@
 import { sourceModel } from '../models/sourceModel.js';
 import { collectionModel } from '../models/collectionModel.js';
 import { supabase } from '../db/supabase.js';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const pdf = require('pdf-parse');
+import { PDFParse } from 'pdf-parse';
 import OpenAI from 'openai';
 
 // 初始 Qwen 客户端用于预处理
@@ -20,6 +18,7 @@ export const sourceService = {
   },
 
   async create({ notebookId, type, title, icon, file }) {
+    console.log(`[SourceService] Starting upload: ${title} (${type})`);
     let url = '';
     let contentText = '';
     
@@ -53,8 +52,14 @@ export const sourceService = {
       // 2. 提取文本内容
       try {
         if (type === 'PDF') {
-          const pdfData = await pdf(file.buffer);
-          contentText = pdfData.text;
+          console.log('[SourceService] Extracting PDF text...');
+          // pdf-parse v2 requires Uint8Array, not raw Node.js Buffer
+          const pdfData64 = new Uint8Array(file.buffer);
+          const parser = new PDFParse({ data: pdfData64 });
+          const pdfData = await parser.getText();
+          await parser.destroy();
+          contentText = pdfData.text || '';
+          console.log(`[SourceService] PDF text extracted: ${contentText.length} chars`);
         } else if (type === 'Markdown' || type === 'Text') {
           contentText = file.buffer.toString('utf-8');
         }
@@ -68,6 +73,7 @@ export const sourceService = {
     }
 
     const date = new Date().toLocaleDateString('zh-CN');
+    console.log('[SourceService] Creating database record...');
     const newSource = await sourceModel.create({
       notebookId, 
       type, 
@@ -77,11 +83,14 @@ export const sourceService = {
       url,
       contentText
     });
+    console.log('[SourceService] Record created successfully');
     
     // 更新笔记本素材数
     const notebook = await collectionModel.findById(notebookId);
     if (notebook) {
-      await collectionModel.update(notebookId, { sourceCount: (notebook.source_count || 0) + 1 });
+      const currentCount = notebook.sourceCount || 0;
+      await collectionModel.update(notebookId, { sourceCount: currentCount + 1 });
+      console.log(`[SourceService] Updated notebook source count: ${currentCount} -> ${currentCount + 1}`);
     }
     
     return newSource;
@@ -109,7 +118,7 @@ export const sourceService = {
     if (row && row.notebookId) {
       const notebook = await collectionModel.findById(row.notebookId);
       if (notebook) {
-        await collectionModel.update(row.notebookId, { sourceCount: Math.max(0, (notebook.source_count || 0) - 1) });
+        await collectionModel.update(row.notebookId, { sourceCount: Math.max(0, (notebook.sourceCount || 0) - 1) });
       }
     }
     return row;

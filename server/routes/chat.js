@@ -152,12 +152,9 @@ router.post('/sendStream', async (ctx) => {
         let fullContent = '';
         stream.write(`data: ${JSON.stringify({ d: '', modelUsed, intent })}\n\n`);
 
-        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
         for await (const chunk of streamGenerator) {
           if (chunk) {
             fullContent += chunk;
-            await delay(Math.floor(Math.random() * 30) + 10);
             stream.write(`data: ${JSON.stringify({ d: chunk })}\n\n`);
           }
         }

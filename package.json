@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "server:dev": "node server/index.js",
-    "dev:all": "start \"Koa Backend\" cmd /c \"node server/index.js\" && vite --port=3000 --host=0.0.0.0",
+    "server:dev": "tsx watch server/index.js",
+    "dev:all": "start \"Koa Backend\" cmd /c \"tsx watch server/index.js\" && vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",

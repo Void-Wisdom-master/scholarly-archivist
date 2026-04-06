@@ -4,13 +4,13 @@ import { chatService, artifactService } from '../services/chatService.js';
 const router = new Router({ prefix: '/api/messages' });
 const artifactRouter = new Router({ prefix: '/api/artifacts' });
 
-// âââ å¯¹è¯æ¶æ¯è·¯ç± âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── 对话消息路由 ─────────────────────────────────────────────────────────────
 
 // GET /api/messages?notebookId=xxx
 router.get('/', async (ctx) => {
   try {
     const { notebookId } = ctx.query;
-    if (!notebookId) { ctx.status = 400; ctx.body = { success: false, message: 'éè¦?notebookId' }; return; }
+    if (!notebookId) { ctx.status = 400; ctx.body = { success: false, message: '需要 notebookId' }; return; }
     const messages = await chatService.getHistory(notebookId);
     ctx.body = { success: true, data: messages };
   } catch (err) {
@@ -32,11 +32,11 @@ router.post('/', async (ctx) => {
   }
 });
 
-// DELETE /api/messages?notebookId=xxx  (æ¸ç©ºå¯¹è¯)
+// DELETE /api/messages?notebookId=xxx  (清空对话)
 router.delete('/', async (ctx) => {
   try {
     const { notebookId } = ctx.query;
-    if (!notebookId) { ctx.status = 400; ctx.body = { success: false, message: 'éè¦?notebookId' }; return; }
+    if (!notebookId) { ctx.status = 400; ctx.body = { success: false, message: '需要 notebookId' }; return; }
     await chatService.clearHistory(notebookId);
     if (!notebookId) return ctx.body = { success: false, message: '未提供 notebookId' };
   } catch (err) {
@@ -45,7 +45,7 @@ router.delete('/', async (ctx) => {
   }
 });
 
-// âââ åºå®æ´å¯è·¯ç± âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── 固定洞察路由 ─────────────────────────────────────────────────────────────
 
 // GET /api/artifacts
 artifactRouter.get('/', async (ctx) => {
@@ -74,7 +74,7 @@ artifactRouter.post('/', async (ctx) => {
 artifactRouter.delete('/:id', async (ctx) => {
   try {
     await artifactService.delete(ctx.params.id);
-    ctx.body = { success: true, message: 'å é¤æå' };
+    ctx.body = { success: true, message: '删除成功' };
   } catch (err) {
     ctx.status = 500;
     ctx.body = { success: false, message: err.message };

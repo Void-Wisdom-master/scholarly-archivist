@@ -5,7 +5,7 @@ export const sourceModel = {
     if (!supabase) return [];
     const { data, error } = await supabase
       .from('sources')
-      .select('*')
+      .select('id, notebook_id, type, title, date, icon, url, summary, created_at')
       .eq('notebook_id', notebookId)
       .order('created_at', { ascending: false });
     if (error) throw error;
@@ -16,7 +16,7 @@ export const sourceModel = {
     if (!supabase) return null;
     const { data, error } = await supabase
       .from('sources')
-      .select('*')
+      .select('id, notebook_id, type, title, date, icon, url, summary, created_at')
       .eq('id', id)
       .single();
     if (error) {
@@ -26,7 +26,7 @@ export const sourceModel = {
     return toCamel(data);
   },
 
-  async create({ notebookId, type, title, date, icon, url, contentText }) {
+  async create({ notebookId, type, title, date, icon, url, contentText, summary }) {
     if (!supabase) throw new Error('Supabase 未配置');
     const { data, error } = await supabase
       .from('sources')
@@ -37,13 +37,11 @@ export const sourceModel = {
         date, 
         icon, 
         url,
-        content_text: contentText
+        summary: summary || contentText // 使用 summary 存储提取的文本，作为 content_text 缺失的兜底
       }])
-      .select()
+      .select('id, notebook_id, type, title, date, icon, url, summary, created_at')
       .single();
     if (error) throw error;
-    // Update source_count on collection
-    await supabase.rpc('increment_source_count', { notebook_id: notebookId }).catch(() => {});
     return toCamel(data);
   },
 
@@ -53,7 +51,7 @@ export const sourceModel = {
       .from('sources')
       .delete()
       .eq('id', id)
-      .select()
+      .select('id, notebook_id, type, title, date, icon, url, summary, created_at')
       .single();
     if (error) throw error;
     return toCamel(data);
@@ -69,7 +67,7 @@ function toCamel(row) {
     date: row.date,
     icon: row.icon,
     url: row.url,
-    contentText: row.content_text,
+    contentText: row.summary, // 完全降级使用 summary 存储原本 content_text 的内容
     summary: row.summary,
     createdAt: row.created_at
   };

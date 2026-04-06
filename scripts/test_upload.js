@@ -1,5 +1,5 @@
 const API_BASE = 'http://localhost:3001/api';
-const TEST_NOTEBOOK_ID = 'd1b1b1b1-b1b1-4b1b-b1b1-b1b1b1b1b1b1'; // Mock notebook ID
+const TEST_NOTEBOOK_ID = '758302c3-8b3d-497a-b0f1-f6f4eece7f82'; // Valid notebook ID for testing
 
 async function testUpload() {
   console.log('--- Starting Upload Test ---');
@@ -10,7 +10,7 @@ async function testUpload() {
   formData.append('type', 'Markdown');
   formData.append('icon', 'notes');
   
-  const blob = new Blob(['# æºå²å¯»éç ç©¶æ¥å\nè¿æ¯ä¸ä¸ªæµè¯ææ¡£ã?], { type: 'text/markdown' });
+  const blob = new Blob(['# 研史明智研究报告\n这是一个测试文档'], { type: 'text/markdown' });
   formData.append('file', blob, 'test_parsing.md');
 
   try {

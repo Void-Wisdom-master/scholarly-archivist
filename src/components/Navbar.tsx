@@ -22,9 +22,9 @@ const Navbar: React.FC = () => {
             <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-[var(--radius-apple-xl)] shadow-lg shadow-primary/20 transition-transform active:scale-95 group-hover:-rotate-3 duration-500">
               <span className="material-symbols-outlined text-on-primary text-3xl">history_edu</span>
             </div>
-            <span className="text-2xl font-headline font-bold text-primary tracking-tight whitespace-nowrap">智史寻道</span>
+            <span className="text-2xl font-headline font-bold text-primary tracking-tight whitespace-nowrap">研史明智</span>
           </div>
-          
+
           <div className="hidden lg:flex items-center gap-12 ml-6">
             {[
               { id: 'LIBRARY', label: '大图书馆', path: '/library' },
@@ -43,17 +43,16 @@ const Navbar: React.FC = () => {
                     navigate(item.path);
                   }
                 }}
-                className={`font-label text-xs uppercase tracking-[0.25em] transition-all py-2 relative group items-center flex gap-3 ${
-                  currentView === item.id
+                className={`font-label text-xs uppercase tracking-[0.25em] transition-all py-2 relative group items-center flex gap-3 ${currentView === item.id
                     ? 'text-primary font-bold'
                     : 'text-on-surface-variant/60 hover:text-primary'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
-                   {item.id === 'LIBRARY' && <span className="material-symbols-outlined text-base">local_library</span>}
-                   {item.id === 'GALLERY' && <span className="material-symbols-outlined text-base">gallery_thumbnail</span>}
-                   {item.id === 'CHAT' && <span className="material-symbols-outlined text-base">chat</span>}
-                   {item.label}
+                  {item.id === 'LIBRARY' && <span className="material-symbols-outlined text-base">local_library</span>}
+                  {item.id === 'GALLERY' && <span className="material-symbols-outlined text-base">gallery_thumbnail</span>}
+                  {item.id === 'CHAT' && <span className="material-symbols-outlined text-base">chat</span>}
+                  {item.label}
                 </div>
                 {currentView === item.id && (
                   <motion.div layoutId="navIndicator" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
@@ -63,7 +62,7 @@ const Navbar: React.FC = () => {
             ))}
           </div>
         </div>
-        
+
         <div className="flex items-center gap-6">
           <button className="w-11 h-11 rounded-full border border-outline/20 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-all shadow-sm active:scale-95 duration-300">
             <span className="material-symbols-outlined text-2xl">account_circle</span>

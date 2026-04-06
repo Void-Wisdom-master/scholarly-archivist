@@ -226,12 +226,12 @@ export async function routeStream({ message, notebookId, notebookTitle, sourceTi
     try {
       const { data, error } = await supabase
         .from('sources')
-        .select('title, content_text')
+        .select('title, summary')
         .eq('notebook_id', notebookId)
         .in('title', sourceTitles);
 
       if (!error && data && data.length > 0) {
-        const contextText = data.map(d => `【${d.title}】\n${d.content_text}`).join('\n\n');
+        const contextText = data.map(d => `【${d.title}】\n${d.summary}`).join('\n\n');
         sourceContext = `以下是选定的历史档案内容：\n${contextText}\n\n请基于此回答用户问题。如果使用了素材内容，需在文末或句末标注 (源自: 对应素材标题)。`;
       } else {
         sourceContext = `用户当前参考的素材：${sourceTitles.join('，')}。`;
@@ -267,7 +267,7 @@ export async function routeStream({ message, notebookId, notebookTitle, sourceTi
 1. 必须使用 Mermaid 语法 (使用 graph TD 或 mindmap 结构)。
 2. 输出的内容必须直接包含在 \`\`\`mermaid 代码块中。
 3. 不要输出任何代码块以外的解释性文字或思考过程。
-4. 确保节点标签中如果包含特殊字符（如括?），请用引号包裹，例如：A["(子节点)"]。
+4. 确保节点标签中如果包含特殊字符（如括号），请用引号包裹，例如：A["(子节点)"]。
 5. 你可以使用适当的 Emoji 来增强视觉效果。
 
 输出示例：
